@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Risov's Computer learning — What is an Algorithm?</title>
+  <meta name="description" content="Risov's Computer learning: interactive lesson 'What is an Algorithm?' with animated video and 3D simulation." />
+  <style>
+    :root{
+      --bg:#0f172a; --card:#0b1220; --muted:#94a3b8; --accent:#6d28d9; --glass: rgba(255,255,255,0.03);
+      --max:1100px;
+    }
+    html,body{height:100%;}
+    body{
+      margin:0; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,#071529 0%, #07172b 60%); color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:24px;
+      display:flex; justify-content:center;
+    }
+    .container{width:100%; max-width:var(--max);} 
+    header{display:flex; align-items:center; gap:16px; margin-bottom:18px;}
+    .logo{
+      width:56px; height:56px; border-radius:10px; background:linear-gradient(135deg,var(--accent),#1e40af);
+      display:flex; align-items:center; justify-content:center; font-weight:700; font-size:18px;
+      box-shadow:0 6px 18px rgba(13,12,25,0.6);
+    }
+    h1{margin:0; font-size:20px;}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:12px; padding:18px; box-shadow: 0 6px 30px rgba(2,6,23,0.6); border:1px solid rgba(255,255,255,0.03);} 
+    .grid{display:grid; gap:16px; grid-template-columns: 1fr 380px;}
+    @media (max-width:980px){ .grid{grid-template-columns:1fr; } .right-col{order:2} }
+    .section-title{font-size:15px; margin:0 0 8px 0; color:#f1f5f9;}
+    p{color:var(--muted); line-height:1.45; margin:0 0 12px 0;}
+    .video-wrap iframe{width:100%; height:260px; border-radius:8px; border:0; background:#000;}
+    .sim-wrap{height:320px; border-radius:8px; overflow:hidden; background:linear-gradient(180deg,#020617,#071029); position:relative; border:1px solid rgba(255,255,255,0.03);} 
+    .controls{display:flex; gap:8px; align-items:center; margin-top:8px; flex-wrap:wrap;}
+    input[type=range]{accent-color:var(--accent); width:180px;}
+    label{font-size:13px; color:var(--muted);} 
+    .quiz{margin-top:12px;}
+    .btn{
+      display:inline-block; padding:8px 12px; border-radius:8px; background:linear-gradient(90deg,var(--accent),#1e40af);
+      color:white; text-decoration:none; font-weight:600; border:0; cursor:pointer;
+    }
+    footer{margin-top:18px; color:var(--muted); font-size:13px;}
+    .notice{background:var(--glass); padding:10px; border-radius:8px; color:var(--muted); font-size:13px; margin-bottom:12px;}
+    .small{font-size:13px; color:var(--muted);} 
+    /* fallback message */
+    #webgl-fallback{display:none; padding:16px; border-radius:8px; background:#1a2333; color:#f8fafc;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo" aria-hidden="true">RCL</div>
+      <div>
+        <h1>Risov's Computer learning</h1>
+        <div class="small">Interactive lessons for classes 1–12 — sample lesson</div>
+      </div>
+    </header>
+
+    <main class="grid">
+      <div class="card">
+        <div class="notice">Grade: 6 • Subject: Computer Science • Chapter: Algorithms</div>
+
+        <article>
+          <h2 class="section-title">What is an Algorithm?</h2>
+          <p><strong>Objective:</strong> Understand what an algorithm is and why step-by-step instructions matter. This lesson includes an animated explanation, an interactive 3D simulation, and a short quiz to check understanding.</p>
+
+          <section style="margin-top:12px;">
+            <h3 class="section-title">Animated Explanation</h3>
+            <p>Watch the short animated video below. Captions are available on the video player (YouTube).</p>
+            <div class="video-wrap card" style="padding:0; margin-top:8px;">
+              <!-- Replace the src with your production video if desired -->
+              <iframe title="What is an Algorithm? - Example" src="https://www.youtube.com/embed/ysz5S6PUM-U" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </section>
+
+          <section style="margin-top:16px;">
+            <h3 class="section-title">Quick explanation (short)</h3>
+            <p>An algorithm is a clear set of steps or instructions you follow to solve a problem or complete a task — for example, following steps to make a sandwich or to sort a list of numbers. Algorithms can be written in words, diagrams, or code.</p>
+          </section>
+
+          <section style="margin-top:16px;">
+            <h3 class="section-title">Quick Quiz</h3>
+            <div class="quiz">
+              <div style="margin-bottom:10px;">
+                <label class="small">1) What is an algorithm? (choose)</label><br/>
+                <select id="q1" style="margin-top:6px; padding:8px; border-radius:6px; border:1px solid rgba(255,255,255,0.06); background:transparent; color:inherit;">
+                  <option value="">-- select --</option>
+                  <option value="a">A random guess</option>
+                  <option value="b">A set of steps to solve a problem</option>
+                  <option value="c">A video file format</option>
+                </select>
+              </div>
+
+              <div style="margin-bottom:10px;">
+                <label class="small">2) Put these steps for making tea in the correct order (type numbers comma-separated): Boil water, Add tea leaves, Pour into cup, Heat the water</label><br/>
+                <input id="q2" placeholder="1,2,3,4" style="margin-top:6px; padding:8px; border-radius:6px; width:100%; border:1px solid rgba(255,255,255,0.06); background:transparent; color:inherit;" />
+              </div>
+
+              <div style="margin-top:8px;">
+                <button class="btn" onclick="checkQuiz()">Check answers</button>
+                <span id="quiz-result" style="margin-left:12px;" class="small"></span>
+              </div>
+            </div>
+          </section>
+
+        </article>
+
+        <footer>
+          <div class="small" style="margin-top:12px;">Transcript & additional resources: provide transcripts and teacher notes when publishing for accessibility.</div>
+        </footer>
+      </div>
+
+      <aside class="right-col">
+        <div class="card" style="margin-bottom:12px;">
+          <h3 class="section-title">Interactive 3D Simulation</h3>
+          <p>Use the controls to change rotation speed and cube color. Drag to orbit the scene.</p>
+          <div id="sim" class="sim-wrap" aria-label="3D simulation area" role="region"></div>
+
+          <div class="controls">
+            <label for="speed">Speed</label>
+            <input id="speed" type="range" min="0" max="3" step="0.01" value="0.8" />
+            <label for="color">Color</label>
+            <input id="color" type="color" value="#6d28d9" />
+            <button class="btn" id="resetBtn" style="padding:6px 10px; font-size:13px;">Reset</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="section-title">Why 3D demos?</h3>
+          <p>3D simulations make abstract concepts tangible. For algorithms, you can visualize sorting, searching, and step-by-step transformations. Use presets and parameters to test different scenarios.</p>
+        </div>
+      </aside>
+    </main>
+
+    <div id="webgl-fallback" class="card" role="alert">WebGL is not available in your browser. The simulation will not run. Try a modern browser (Chrome, Firefox, Edge) and enable WebGL.</div>
+
+    <footer style="max-width:var(--max); margin-top:18px;">
+      <div class="small card" style="padding:12px;">
+        How to publish this page:
+        <ol style="margin-top:8px; color:var(--muted);">
+          <li>Save this file as <code>index.html</code>.</li>
+          <li>To publish on GitHub Pages: create a public repo (e.g., <code>risov-computer-learning</code>), add and commit this file to the repo root, then enable Pages in repo Settings -> Pages -> main branch / root. URL: <code>https://&lt;your-username&gt;.github.io/risov-computer-learning/</code>.</li>
+          <li>Or drag-and-drop the file into Netlify's Sites dashboard for instant hosting (no git required).</li>
+        </ol>
+        If you want, I can provide the exact git commands or retry creating the GitHub repo for you.
+      </div>
+    </footer>
+  </div>
+
+  <!-- Three.js (non-module) and OrbitControls from CDN -->
+  <script src="https://unpkg.com/three@0.156.0/build/three.min.js"></script>
+  <script src="https://unpkg.com/three@0.156.0/examples/js/controls/OrbitControls.js"></script>
+
+  <script>
+    // Basic WebGL check
+    function webglAvailable() {
+      try {
+        var canvas = document.createElement('canvas');
+        return !!(window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
+      } catch(e) { return false; }
+    }
+    if(!webglAvailable()){
+      document.getElementById('webgl-fallback').style.display = 'block';
+    } else {
+      initSim();
+    }
+
+    function initSim(){
+      const container = document.getElementById('sim');
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x030611);
+
+      const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 100);
+      camera.position.set(2.5, 1.6, 3.6);
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setPixelRatio(window.devicePixelRatio ? Math.min(window.devicePixelRatio, 2) : 1);
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      renderer.toneMappingExposure = 1.0;
+      container.appendChild(renderer.domElement);
+
+      // lights
+      const ambient = new THREE.AmbientLight(0xffffff, 0.45);
+      scene.add(ambient);
+      const dir = new THREE.DirectionalLight(0xffffff, 0.6);
+      dir.position.set(5, 5, 2);
+      scene.add(dir);
+
+      // ground
+      const ground = new THREE.Mesh(
+        new THREE.PlaneGeometry(20,20),
+        new THREE.MeshStandardMaterial({ color: 0x041022, metalness: 0, roughness: 1 })
+      );
+      ground.rotation.x = -Math.PI/2;
+      ground.position.y = -0.8;
+      scene.add(ground);
+
+      // cube
+      const geometry = new THREE.BoxGeometry(1,1,1);
+      const material = new THREE.MeshStandardMaterial({ color: 0x6d28d9, roughness:0.4, metalness:0.2 });
+      const cube = new THREE.Mesh(geometry, material);
+      cube.position.y = 0.0;
+      scene.add(cube);
+
+      // subtle base reflection using circle
+      const circle = new THREE.Mesh(new THREE.CircleGeometry(1.8, 32), new THREE.MeshStandardMaterial({ color: 0x081124, roughness: 1 }));
+      circle.rotation.x = -Math.PI/2;
+      circle.position.y = -0.79;
+      scene.add(circle);
+
+      // controls
+      const controls = new THREE.OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.08;
+      controls.target.set(0,0,0);
+
+      // resize handling
+      function onResize(){
+        const w = container.clientWidth;
+        const h = container.clientHeight;
+        renderer.setSize(w,h);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+      }
+      window.addEventListener('resize', onResize);
+
+      // UI bindings
+      const speedInput = document.getElementById('speed');
+      const colorInput = document.getElementById('color');
+      const resetBtn = document.getElementById('resetBtn');
+      let speed = parseFloat(speedInput.value) || 0.8;
+
+      speedInput.addEventListener('input', () => {
+        speed = parseFloat(speedInput.value);
+      });
+      colorInput.addEventListener('input', () => {
+        material.color.set(colorInput.value);
+      });
+      resetBtn.addEventListener('click', () => {
+        speedInput.value = '0.8';
+        colorInput.value = '#6d28d9';
+        speed = 0.8;
+        material.color.set('#6d28d9');
+        camera.position.set(2.5,1.6,3.6);
+        controls.target.set(0,0,0);
+        controls.update();
+      });
+
+      // animation loop
+      let last = performance.now();
+      function animate(now){
+        const delta = (now - last) / 1000;
+        last = now;
+        cube.rotation.x += delta * 0.6 * speed;
+        cube.rotation.y += delta * 0.45 * speed;
+        controls.update();
+        renderer.render(scene, camera);
+        requestAnimationFrame(animate);
+      }
+      requestAnimationFrame(animate);
+      // ensure initial sizing
+      onResize();
+    }
+
+    // Quiz check
+    function checkQuiz(){
+      const q1 = document.getElementById('q1').value;
+      const q2 = document.getElementById('q2').value.replace(/\s+/g, '');
+      let score = 0;
+      if(q1 === 'b') score++;
+      if(q2.length > 0) score++; // basic feedback for prototype
+
+      const result = document.getElementById('quiz-result');
+      if(score === 2){
+        result.textContent = 'Great! You got both correct.';
+        result.style.color = '#86efac';
+      } else if(score === 1){
+        result.textContent = 'Partially correct — review the explanation.';
+        result.style.color = '#f59e0b';
+      } else {
+        result.textContent = 'Try again — read the explanation or rewatch the video.';
+        result.style.color = '#fb7185';
+      }
+    }
+  </script>
+</body>
+</html>
